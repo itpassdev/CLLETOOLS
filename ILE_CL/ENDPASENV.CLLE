@@ -1,0 +1,6 @@
+PGM
+DCL VAR(&RTCD) TYPE(*INT)
+CALLPRC PRC('Qp2EndPase') RTNVAL(&RTCD)
+IF COND(&RTCD *NE 0) THEN( +
+  SNDPGMMSG MSG('La chiamata Qp2EndPase ha dato errore.'))
+ENDPGM
