@@ -7,4 +7,4 @@ Con l'evoluzione dell'ambiente **ILE** (*Integrated Language Environment*) il CL
 
 All'interno della cartella **ILE_CL** si trovano gli esempi di codice presentati nei numeri della rivista **ITPASS Journal** nella serie di articoli dedicati all'ambiente **PASE**.
 
-* *Marzo 2019*: **ENDPASENEV**, **STRPASENV** e **GETPASENV**.
+* *Marzo 2019*: **[ENDPASENV](ILE_CL/ENDPASENV.CLLE)**, **STRPASENV** e **GETPASENV**.
