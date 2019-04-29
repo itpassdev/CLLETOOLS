@@ -2,4 +2,4 @@ CLLETOOLS ILE_CL    STRPASENV CLLE      Avvio ambiente PASE
 CLLETOOLS ILE_CL    ENDPASENV CLLE      Terminazione ambiente PASE
 CLLETOOLS ILE_CL    GETPASENV CLLE      Verifica stato PASE
 CLLETOOLS ILE_CL    NUOVO1    CLLE      Da definirsi
-CLLETOOLS ILE_CL    NUOVO2    CLLE      Adatato da Andrea Ribuoli
+CLLETOOLS ILE_CL    NUOVO2    CLLE      Ipotesi di lavoro...
