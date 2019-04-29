@@ -23,12 +23,13 @@ ASDFGHJKLç°§ SHIFT
 ˜µ…•–≤∑†©√  ALT
 ≥ ‡ÁÉ ÓÚ ·— ALT + SHIFT
 
-SP
-RSP
-SHY
-EO
+X'40' SP     SPace
+X'41' RSP    Required SPace
+X'CA' SHY    Soft HYphen
+X'FF' EO     Eight Ones
 
 0123456789ABCDEF
+================
   âäàáãåçñ¢.<(+|
 &éêëèíîïìß!$*);¬
 -/ÂÄÀÁÃÅÇÑ¦,%_>?
