@@ -1,0 +1,3 @@
+PGM
+SNDPGMMSG('Testing...')
+ENDPGM
