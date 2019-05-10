@@ -3,6 +3,4 @@ CLLETOOLS ILE_CL    ENDPASENV CLLE      Terminazione ambiente PASE
 CLLETOOLS ILE_CL    GETPASENV CLLE      Verifica stato PASE
 CLLETOOLS ILE_CL    NUOVO1    CLLE      Da definirsi
 CLLETOOLS ILE_CL    NUOVO2    CLLE      Ipotesi di lavoro...
-TEMPTOOLS QCLSRC    STRPASENV CLLE      Avvio ambiente PASE
-TEMPTOOLS QCLSRC    ENDPASENV CLLE      Terminazione ambiente PASE
-TEMPTOOLS QCLSRC    GETPASENV CLLE      Verifica stato PASE
+CLLETOOLS QCLSRC    BUILD     CLP       Installazione
