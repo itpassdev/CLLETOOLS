@@ -5,6 +5,6 @@ Il linguaggio **CL** (*Control Language*) è il linguaggio di scripting più int
 Con l'evoluzione dell'ambiente **ILE** (*Integrated Language Environment*) il CL è diventato a pieno titolo un linguaggio per lo sviluppo di applicazioni.
 
 
-All'interno della cartella **ILE_CL** si trovano gli esempi di codice presentati nei numeri della rivista **ITPASS Journal** nella serie di articoli dedicati all'ambiente **PASE**.
+All'interno della cartella **ILE_CL** si trovano gli esempi di codice presentati nei numeri della rivista **ITPASS Journal** nella serie di articoli dedicata all'ambiente **PASE**.
 
 * *Marzo 2019*: **[ENDPASENV](ILE_CL/ENDPASENV.CLLE)**, **[STRPASENV](ILE_CL/STRPASENV.CLLE)** e **[GETPASENV](ILE_CL/GETPASENV.CLLE)**.
