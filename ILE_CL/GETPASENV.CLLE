@@ -1,25 +1,25 @@
-PGM
-DCL VAR(&PTRLEN)     TYPE(*INT)
-DCL VAR(&JOBCCSID)   TYPE(*INT)
-DCL VAR(&PASECCSID)  TYPE(*INT)
-DCL VAR(&J_CCSID)    TYPE(*CHAR) LEN(5)
-DCL VAR(&P_CCSID)    TYPE(*CHAR) LEN(5)
-DCL VAR(&MSG)        TYPE(*CHAR) LEN(80)
-CALLPRC PRC('Qp2ptrsize') RTNVAL(&PTRLEN)
-IF COND(&PTRLEN *EQ 0) +
-  THEN(SNDPGMMSG MSG('PASE non attivo'))
-IF COND(&PTRLEN *EQ 4) +
-  THEN(SNDPGMMSG MSG('PASE a 32 bit attivo'))
-IF COND(&PTRLEN *EQ 8) +
-  THEN(SNDPGMMSG MSG('PASE a 64 bit attivo'))
-IF COND(&PTRLEN *NE 0) THEN(DO)
-CALLPRC PRC('Qp2jobCCSID') RTNVAL(&JOBCCSID)
-CHGVAR VAR(&J_CCSID) VALUE(&JOBCCSID)
-CALLPRC PRC('Qp2paseCCSID') RTNVAL(&PASECCSID)
-CHGVAR VAR(&P_CCSID) VALUE(&PASECCSID)
-CHGVAR VAR(&MSG) VALUE('Conversione attiva tra JOB +
-  CCSID ' *CAT &J_CCSID *CAT ' e PASE +
-  CCSID ' *CAT &P_CCSID)
-SNDPGMMSG MSG(&MSG)
-ENDDO
-ENDPGM
+             PGM                                                       
+             DCL        VAR(&PTRLEN) TYPE(*INT)                        
+             DCL        VAR(&JOBCCSID) TYPE(*INT)                      
+             DCL        VAR(&PASECCSID) TYPE(*INT)                     
+             DCL        VAR(&J_CCSID) TYPE(*CHAR) LEN(5)               
+             DCL        VAR(&P_CCSID) TYPE(*CHAR) LEN(5)               
+             DCL        VAR(&MSG) TYPE(*CHAR) LEN(80)                  
+             CALLPRC    PRC('Qp2ptrsize') RTNVAL(&PTRLEN)              
+             IF         COND(&PTRLEN *EQ 0) THEN(SNDPGMMSG MSG('PASE + 
+                          non attivo'))                                
+             IF         COND(&PTRLEN *EQ 4) THEN(SNDPGMMSG MSG('PASE + 
+                          a 32 bit attivo'))                           
+             IF         COND(&PTRLEN *EQ 8) THEN(SNDPGMMSG MSG('PASE + 
+                          a 64 bit attivo'))                           
+             IF         COND(&PTRLEN *NE 0) THEN(DO)                   
+             CALLPRC    PRC('Qp2jobCCSID') RTNVAL(&JOBCCSID)           
+             CHGVAR     VAR(&J_CCSID) VALUE(&JOBCCSID)                 
+             CALLPRC    PRC('Qp2paseCCSID') RTNVAL(&PASECCSID)         
+             CHGVAR     VAR(&P_CCSID) VALUE(&PASECCSID)                
+             CHGVAR     VAR(&MSG) VALUE('Conversione attiva tra JOB +    
+                          CCSID ' *CAT &J_CCSID *CAT ' e PASE CCSID +    
+                          ' *CAT &P_CCSID)                               
+             SNDPGMMSG  MSG(&MSG)                                        
+             ENDDO                                                       
+             ENDPGM      
