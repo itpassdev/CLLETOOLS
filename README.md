@@ -10,3 +10,5 @@ All'interno della cartella **ILE_CL** si trovano gli esempi di codice presentati
 * *Marzo 2019*: **[ENDPASENV](ILE_CL/ENDPASENV.CLLE)**, **[STRPASENV](ILE_CL/STRPASENV.CLLE)** e **[GETPASENV](ILE_CL/GETPASENV.CLLE)**.
 
 * *Giugno 2019*: **[TSTDLOPEN](ILE_CL/TSTDLOPEN.CLLE)**
+
+Il sorgente **REDISSVR** sottomette in batch il servizio Redis messo a disposizione da [PowerRuby CE2](https://github.com/PowerRuby/DE_train_03#launching-redis).
