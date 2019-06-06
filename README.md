@@ -11,4 +11,4 @@ All'interno della cartella **ILE_CL** si trovano gli esempi di codice presentati
 
 * *Giugno 2019*: **[TSTDLOPEN](ILE_CL/TSTDLOPEN.CLLE)**
 
-Il sorgente **REDISSVR** sottomette in batch il servizio Redis messo a disposizione da [PowerRuby CE2](https://github.com/PowerRuby/DE_train_03#launching-redis).
+Il sorgente **REDISSRV** sottomette in batch il servizio Redis messo a disposizione da [PowerRuby CE2](https://github.com/PowerRuby/DE_train_03#launching-redis).
