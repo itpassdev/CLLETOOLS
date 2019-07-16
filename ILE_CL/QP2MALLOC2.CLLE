@@ -53,7 +53,7 @@
              DCL        VAR(&CHAR_I32)  TYPE(*INT)  STG(*DEFINED) LEN(4) DEFVAR(&ARGL 5)
              DCL        VAR(&LENG_I32)  TYPE(*INT)  STG(*DEFINED) LEN(4) DEFVAR(&ARGL 9)
              DCL        VAR(&VOID_P32)  TYPE(*INT)  STG(*DEFINED) LEN(4) DEFVAR(&BUFFER 1)
-             /* 
+             /* */
              DCL        VAR(&STR_P)     TYPE(*PTR)   ADDRESS(*NULL)
              DCL        VAR(&STR_PIN)   TYPE(*CHAR)  STG(*DEFINED) LEN(16) DEFVAR(&STR_P 1)
              DCL        VAR(&STRING)    TYPE(*CHAR) STG(*BASED) LEN(128) BASPTR(&STR_P)
