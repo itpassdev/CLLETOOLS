@@ -12,7 +12,13 @@
              DCL        VAR(&FLAGS) TYPE(*UINT) VALUE(262146)          
              DCL        VAR(&CCSID) TYPE(*INT) VALUE(0)                
              DCL        VAR(&ID) TYPE(*INT) LEN(8) VALUE(0)   
-             
+             /* Qp2dlsym */
+             DCL        VAR(&SY_MALLOC) TYPE(*CHAR) LEN(7) VALUE('malloc')
+             DCL        VAR(&SY_SETSPP) TYPE(*CHAR) LEN(8) VALUE('_SETSPP')
+             DCL        VAR(&SYMB_P)    TYPE(*PTR)         ADDRESS(*NULL)
+             DCL        VAR(&MALLOC)    TYPE(*INT)  LEN(8)
+             DCL        VAR(&_SETSPP)   TYPE(*INT)  LEN(8)
+
              CHGVAR     VAR(&STARTER) VALUE(&STARTER *TCAT &NL)                                   
              CALLPRC    PRC('Qp2RunPase') PARM((&STARTER) (&NULL_P +   
                           *BYVAL) (&NULL_P *BYVAL) (0 *BYVAL) +        
@@ -22,6 +28,12 @@
              CHGVAR     VAR(&PATH) VALUE(&PATH *TCAT &NL)              
              CALLPRC    PRC('Qp2dlopen') PARM((&PATH) (&FLAGS +        
                           *BYVAL) (&CCSID *BYVAL)) RTNVAL(&ID) 
-             IF         COND(&ID *EQ 0) THEN(GOTO CMDLBL(FINE))       
+             IF         COND(&ID *EQ 0) THEN(GOTO CMDLBL(FINE))   
+             CALLPRC    PRC('Qp2dlsym') PARM((&ID *BYVAL) (&SY_MALLOC) (&CCSID  *BYVAL) (&SYMB_P)) RTNVAL(&RT_P)
+             IF         COND(&RT_P *EQ *NULL) THEN(GOTO CMDLBL(FINE)) 
+             CHGVAR     VAR(&MALLOC) VALUE(&RT)
+             CALLPRC    PRC('Qp2dlsym') PARM((&ID *BYVAL) (&SY_SETSPP) (&CCSID  *BYVAL) (&SYMB_P)) RTNVAL(&RT_P)
+             IF         COND(&RT_P *EQ *NULL) THEN(GOTO CMDLBL(FINE)) 
+             CHGVAR     VAR(&_SETSPP) VALUE(&RT)
              
  FINE:       ENDPGM   
