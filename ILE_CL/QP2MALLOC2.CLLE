@@ -31,9 +31,11 @@
              CALLPRC    PRC('Qp2dlopen') PARM((&PATH) (&FLAGS +        
                           *BYVAL) (&JCCSID *BYVAL)) RTNVAL(&ID) 
              IF         COND(&ID *EQ 0) THEN(GOTO CMDLBL(FINE))   
+             CHGVAR     VAR(&SY_MALLOC) VALUE(&SY_MALLOC *TCAT &NL)              
              CALLPRC    PRC('Qp2dlsym') PARM((&ID *BYVAL) (&SY_MALLOC) (&JCCSID  *BYVAL) (&SYMB_P)) RTNVAL(&RT_P)
              IF         COND(&RT_P *EQ *NULL) THEN(GOTO CMDLBL(FINE)) 
              CHGVAR     VAR(&MALLOC) VALUE(&RT)
+             CHGVAR     VAR(&SY_SETSPP) VALUE(&SY_SETSPP *TCAT &NL)              
              CALLPRC    PRC('Qp2dlsym') PARM((&ID *BYVAL) (&SY_SETSPP) (&JCCSID  *BYVAL) (&SYMB_P)) RTNVAL(&RT_P)
              IF         COND(&RT_P *EQ *NULL) THEN(GOTO CMDLBL(FINE)) 
              CHGVAR     VAR(&SETSPP) VALUE(&RT)
