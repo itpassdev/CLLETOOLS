@@ -61,7 +61,6 @@
              CHGVAR     VAR(&SY_SETSPP) VALUE(&SY_SETSPP *TCAT &NL)              
              CALLPRC    PRC('Qp2dlsym') PARM((&ID *BYVAL) (&SY_SETSPP) (&JCCSID  *BYVAL) (&SYMB_P)) RTNVAL(&RT_P)
              IF         COND(&RT_P *EQ *NULL) THEN(GOTO CMDLBL(FINE)) 
-             CALLPRC    PRC('Qp2malloc') PARM((&SIZE *BYVAL) (&TARG64) (*)) RTNVAL(&ILE_PTR)
              CHGVAR     VAR(&SETSPP) VALUE(&RT)
              CHGVAR     VAR(&SIZE_I32)                             VALUE(128)
              CHGVAR     VAR(&FIRST)                                VALUE(-1)
@@ -94,7 +93,7 @@
                                                  (&BUFF_P *BYVAL) +
                                                  (&BF_LEN *BYVAL)) RTNVAL(&RTCD)
              IF         COND(&RTCD *NE 0) THEN(DO)
-             SNDPGMMSG MSG('Qp2CallPase2 failed for malloc(); RTCD = ' *CAT %CHAR(&RTCD))
+             SNDPGMMSG MSG('Qp2CallPase2 failed for _SETSPP(); RTCD = ' *CAT %CHAR(&RTCD))
              GOTO CMDLBL(FINE)
              ENDDO
              SNDPGMMSG  MSG('OK!')
