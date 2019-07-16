@@ -8,9 +8,8 @@
              DCL        VAR(&RTCD) TYPE(*INT)                          
              /* Qp2dlopen */
              DCL        VAR(&PATH) TYPE(*CHAR) LEN(80) VALUE('/usr/lib/libc.a(shr.o)')                
-             DCL        VAR(&NL) TYPE(*CHAR) LEN(1) VALUE(X'00')       
              DCL        VAR(&FLAGS) TYPE(*UINT) VALUE(262146)          
-             DCL        VAR(&CCSID) TYPE(*INT) VALUE(0)                
+             DCL        VAR(&JCCSID) TYPE(*INT) VALUE(0)                
              DCL        VAR(&ID) TYPE(*INT) LEN(8) VALUE(0)   
              /* Qp2dlsym */
              DCL        VAR(&SY_MALLOC) TYPE(*CHAR) LEN(7) VALUE('malloc')
@@ -27,12 +26,12 @@
              IF         COND(&RTCD *NE -2) THEN(GOTO CMDLBL(FINE))       
              CHGVAR     VAR(&PATH) VALUE(&PATH *TCAT &NL)              
              CALLPRC    PRC('Qp2dlopen') PARM((&PATH) (&FLAGS +        
-                          *BYVAL) (&CCSID *BYVAL)) RTNVAL(&ID) 
+                          *BYVAL) (&JCCSID *BYVAL)) RTNVAL(&ID) 
              IF         COND(&ID *EQ 0) THEN(GOTO CMDLBL(FINE))   
-             CALLPRC    PRC('Qp2dlsym') PARM((&ID *BYVAL) (&SY_MALLOC) (&CCSID  *BYVAL) (&SYMB_P)) RTNVAL(&RT_P)
+             CALLPRC    PRC('Qp2dlsym') PARM((&ID *BYVAL) (&SY_MALLOC) (&JCCSID  *BYVAL) (&SYMB_P)) RTNVAL(&RT_P)
              IF         COND(&RT_P *EQ *NULL) THEN(GOTO CMDLBL(FINE)) 
              CHGVAR     VAR(&MALLOC) VALUE(&RT)
-             CALLPRC    PRC('Qp2dlsym') PARM((&ID *BYVAL) (&SY_SETSPP) (&CCSID  *BYVAL) (&SYMB_P)) RTNVAL(&RT_P)
+             CALLPRC    PRC('Qp2dlsym') PARM((&ID *BYVAL) (&SY_SETSPP) (&JCCSID  *BYVAL) (&SYMB_P)) RTNVAL(&RT_P)
              IF         COND(&RT_P *EQ *NULL) THEN(GOTO CMDLBL(FINE)) 
              CHGVAR     VAR(&_SETSPP) VALUE(&RT)
              
