@@ -1,0 +1,27 @@
+             PGM        
+             /* Qp2StartPase */
+             DCL        VAR(&STARTER) TYPE(*CHAR) LEN(17) VALUE('/usr/lib/start32')
+             DCL        VAR(&NL) TYPE(*CHAR) LEN(1) VALUE(X'00')       
+             DCL        VAR(&CCSID) TYPE(*INT) VALUE(1208)              
+             DCL        VAR(&ARGV_P) TYPE(*PTR) ADDRESS(&STARTER)      
+             DCL        VAR(&NULL_P) TYPE(*PTR) ADDRESS(*NULL)         
+             DCL        VAR(&RTCD) TYPE(*INT)                          
+             /* Qp2dlopen */
+             DCL        VAR(&PATH) TYPE(*CHAR) LEN(80) VALUE('/usr/lib/libc.a(shr.o)')                
+             DCL        VAR(&NL) TYPE(*CHAR) LEN(1) VALUE(X'00')       
+             DCL        VAR(&FLAGS) TYPE(*UINT) VALUE(262146)          
+             DCL        VAR(&CCSID) TYPE(*INT) VALUE(0)                
+             DCL        VAR(&ID) TYPE(*INT) LEN(8) VALUE(0)   
+             
+             CHGVAR     VAR(&STARTER) VALUE(&STARTER *TCAT &NL)                                   
+             CALLPRC    PRC('Qp2RunPase') PARM((&STARTER) (&NULL_P +   
+                          *BYVAL) (&NULL_P *BYVAL) (0 *BYVAL) +        
+                          (&CCSID *BYVAL) (&ARGV_P) (&NULL_P +         
+                          *BYVAL)) RTNVAL(&RTCD)                       
+             IF         COND(&RTCD *NE -2) THEN(GOTO CMDLBL(FINE))       
+             CHGVAR     VAR(&PATH) VALUE(&PATH *TCAT &NL)              
+             CALLPRC    PRC('Qp2dlopen') PARM((&PATH) (&FLAGS +        
+                          *BYVAL) (&CCSID *BYVAL)) RTNVAL(&ID) 
+             IF         COND(&ID *EQ 0) THEN(GOTO CMDLBL(FINE))       
+             
+ FINE:       ENDPGM   
