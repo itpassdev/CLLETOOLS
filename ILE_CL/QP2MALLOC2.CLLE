@@ -135,6 +135,26 @@ SKIP:        CHGVAR     VAR(&SIZE_I32)                             VALUE(128)
              GOTO CMDLBL(FINE)
              ENDDO
              
+             CHGVAR     VAR(&STRI_P32)                             VALUE(&MEMORY + 16)
+             CHGVAR     VAR(&CHAR_I32)                             VALUE(242)
+             CHGVAR     VAR(&LENG_I32)                             VALUE(24)
+             CHGVAR     VAR(&FIRST)                                VALUE(-5)
+             CHGVAR     VAR(&SECOND)                               VALUE(-1)
+             CHGVAR     VAR(&THIRD)                                VALUE(-1)
+             CHGVAR     VAR(&FORTH)                                VALUE(0)
+             CHGVAR     VAR(&RESTYP)                               VALUE(-5)
+             CHGVAR     VAR(&BF_LEN)                               VALUE(4)
+             CALLPRC    PRC('Qp2CallPase2') PARM((&MEMSET) +
+                                                 (&ARGL_P *BYVAL) +
+                                                 (&SIGN_P *BYVAL) +
+                                                 (&RESTYP *BYVAL) +
+                                                 (&BUFF_P *BYVAL) +
+                                                 (&BF_LEN *BYVAL)) RTNVAL(&RTCD)
+             IF         COND(&RTCD *NE 0) THEN(DO)
+             SNDPGMMSG MSG('Qp2CallPase2 failed for memset(); RTCD = ' *CAT %CHAR(&RTCD))
+             GOTO CMDLBL(FINE)
+             ENDDO
+             
              CALLPRC    PRC('Qp2malloc') PARM((&SIZE *BYVAL) (&TARG64) (*)) RTNVAL(&ILE_PTR)
              
              CHGVAR     VAR(&TARG_P32)  VALUE(&TARGET)
