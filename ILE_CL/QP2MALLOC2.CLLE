@@ -96,6 +96,8 @@
              ENDDO
              CHGVAR     VAR(&MEMORY) VALUE(&VOID_P32)
              
+             CALLPRC    PRC('Qp2malloc') PARM((&SIZE *BYVAL) (&TARG64) (*)) RTNVAL(&ILE_PTR)
+             
              CHGVAR     VAR(&TARG_P32)  VALUE(&TARGET)
              CHGVAR     VAR(&MEMO_P32)  VALUE(&MEMORY)
              CHGVAR     VAR(&FIRST)                                VALUE(-5)
