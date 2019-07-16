@@ -131,7 +131,7 @@ SKIP:        CHGVAR     VAR(&SIZE_I64)                             VALUE(128)
                                                  (&BUFF_P *BYVAL) +
                                                  (&BF_LEN *BYVAL)) RTNVAL(&RTCD)
              IF         COND(&RTCD *NE 0) THEN(DO)
-             SNDPGMMSG MSG('Qp2CallPase2 failed for malloc(); RTCD = ' *CAT %CHAR(&RTCD))
+             SNDPGMMSG MSG('Qp2CallPase2 failed for memset(); RTCD = ' *CAT %CHAR(&RTCD))
              GOTO CMDLBL(FINE)
              ENDDO
              
