@@ -115,10 +115,6 @@ SKIP:        CHGVAR     VAR(&SIZE_I32)                             VALUE(128)
              ENDDO
              CHGVAR     VAR(&MEMORY) VALUE(&VOID_P32)
              
-             DCL        VAR(&STRI_P32)  TYPE(*INT)  STG(*DEFINED) LEN(4) DEFVAR(&ARGL 1)
-             DCL        VAR(&CHAR_I32)  TYPE(*INT)  STG(*DEFINED) LEN(4) DEFVAR(&ARGL 5)
-             DCL        VAR(&LENG_I32)  TYPE(*INT)  STG(*DEFINED) LEN(4) DEFVAR(&ARGL 9)
-             
              CHGVAR     VAR(&STRI_P32)                             VALUE(&MEMORY)
              CHGVAR     VAR(&CHAR_I32)                             VALUE(241)
              CHGVAR     VAR(&LENG_I32)                             VALUE(128)
