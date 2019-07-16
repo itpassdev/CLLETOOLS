@@ -155,5 +155,5 @@ SKIP:        CHGVAR     VAR(&SIZE_I32)                             VALUE(128)
              GOTO CMDLBL(FINE)
              ENDDO
              CHGVAR     VAR(&STR_PIN) VALUE(&PTR_VAL)
-             SNDPGMMSG  MSG('OK!')
+             SNDPGMMSG  MSG(&STRING)
  FINE:       ENDPGM   
