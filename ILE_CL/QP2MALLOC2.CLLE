@@ -37,5 +37,5 @@
              CALLPRC    PRC('Qp2dlsym') PARM((&ID *BYVAL) (&SY_SETSPP) (&JCCSID  *BYVAL) (&SYMB_P)) RTNVAL(&RT_P)
              IF         COND(&RT_P *EQ *NULL) THEN(GOTO CMDLBL(FINE)) 
              CHGVAR     VAR(&SETSPP) VALUE(&RT)
-             
+             SNDPDMMSG  MSG('OK!')
  FINE:       ENDPGM   
