@@ -19,6 +19,12 @@
              DCL        VAR(&SETSPP)    TYPE(*INT)  LEN(8)
              DCL        VAR(&RT_P)      TYPE(*PTR)   ADDRESS(*NULL)
              DCL        VAR(&RT)        TYPE(*INT) STG(*BASED) LEN(8) BASPTR(&RT_P)
+             /* Qp2malloc */
+             DCL        VAR(&SIZE)      TYPE(*INT)  LEN(4)
+             DCL        VAR(&TARG64)    TYPE(*INT)  LEN(8)
+             DCL        VAR(&TARGET)    TYPE(*INT)  STG(*DEFINED) LEN(4) DEFVAR(&TARG64 5)
+             DCL        VAR(&ILE_PTR)   TYPE(*PTR)         ADDRESS(*NULL)
+             CALLPRC    PRC('Qp2malloc') PARM((&SIZE *BYVAL) (&TARG64) (*)) RTNVAL(&ILE_PTR)
              /* Qp2CallPase2 */
              DCL        VAR(&ARGL)      TYPE(*CHAR)               LEN(8)
              DCL        VAR(&ARGL_P)    TYPE(*PTR)                                       ADDRESS(&ARGL)
@@ -56,6 +62,7 @@
              CHGVAR     VAR(&SY_SETSPP) VALUE(&SY_SETSPP *TCAT &NL)              
              CALLPRC    PRC('Qp2dlsym') PARM((&ID *BYVAL) (&SY_SETSPP) (&JCCSID  *BYVAL) (&SYMB_P)) RTNVAL(&RT_P)
              IF         COND(&RT_P *EQ *NULL) THEN(GOTO CMDLBL(FINE)) 
+             CALLPRC    PRC('Qp2malloc') PARM((&SIZE *BYVAL) (&TARG64) (*)) RTNVAL(&ILE_PTR)
              CHGVAR     VAR(&SETSPP) VALUE(&RT)
              CHGVAR     VAR(&SIZE_I32)                             VALUE(128)
              CHGVAR     VAR(&FIRST)                                VALUE(-1)
