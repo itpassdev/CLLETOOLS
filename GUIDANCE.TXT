@@ -2,4 +2,5 @@ ILE_CL    STRPASENV CLLE      Avvio ambiente PASE
 ILE_CL    ENDPASENV CLLE      Terminazione ambiente PASE
 ILE_CL    GETPASENV CLLE      Verifica stato PASE
 ILE_CL    TSTDLOPEN CLLE      Loading a PASE shared library
+ILE_CL    QP2MALLOC2CLLE      Loading a PASE shared library
 QCLSRC    BUILD     CLP       Installazione
