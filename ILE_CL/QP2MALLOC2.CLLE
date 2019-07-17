@@ -56,7 +56,7 @@ PGM
              /* */
              DCL        VAR(&STR_P)     TYPE(*PTR)   ADDRESS(*NULL)
              DCL        VAR(&STR_PIN)   TYPE(*CHAR)  STG(*DEFINED) LEN(16) DEFVAR(&STR_P 1)
-             DCL        VAR(&STRING)    TYPE(*CHAR) STG(*BASED) LEN(78) BASPTR(&STR_P)
+             DCL        VAR(&STRING)    TYPE(*CHAR) STG(*BASED) LEN(75) BASPTR(&STR_P)
              
              CHGVAR     VAR(&STARTER) VALUE(&STARTER *TCAT &NL)                                   
              CALLPRC    PRC('Qp2RunPase') PARM((&STARTER) (&NULL_P +   
@@ -98,7 +98,7 @@ PGM
              ENDDO
              CHGVAR     VAR(&TARGET) VALUE(&VOID_P32)
 
-SKIP:        CHGVAR     VAR(&SIZE_I32)                             VALUE(78)
+SKIP:        CHGVAR     VAR(&SIZE_I32)                             VALUE(75)
              CHGVAR     VAR(&FIRST)                                VALUE(-1)
              CHGVAR     VAR(&SECOND)                               VALUE(0)
              CHGVAR     VAR(&RESTYP)                               VALUE(-5)
@@ -117,7 +117,7 @@ SKIP:        CHGVAR     VAR(&SIZE_I32)                             VALUE(78)
              
              CHGVAR     VAR(&STRI_P32)                             VALUE(&MEMORY)
              CHGVAR     VAR(&CHAR_I32)                             VALUE(241)
-             CHGVAR     VAR(&LENG_I32)                             VALUE(78)
+             CHGVAR     VAR(&LENG_I32)                             VALUE(75)
              CHGVAR     VAR(&FIRST)                                VALUE(-5)
              CHGVAR     VAR(&SECOND)                               VALUE(-1)
              CHGVAR     VAR(&THIRD)                                VALUE(-1)
