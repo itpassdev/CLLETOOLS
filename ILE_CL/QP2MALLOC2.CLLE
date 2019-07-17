@@ -176,4 +176,5 @@ SKIP:        CHGVAR     VAR(&SIZE_I32)                             VALUE(78)
              ENDDO
              CHGVAR     VAR(&STR_PIN) VALUE(&PTR_VAL)
              SNDPGMMSG  MSG(&STRING)
+             CALLPRC    PRC('Qp2EndPase') RTNVAL(&RTCD)
  FINE:       ENDPGM   
