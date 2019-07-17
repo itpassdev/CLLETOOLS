@@ -58,6 +58,13 @@
              DCL        VAR(&STR_PIN)   TYPE(*CHAR)  STG(*DEFINED) LEN(16) DEFVAR(&STR_P 1)
              DCL        VAR(&STRING)    TYPE(*CHAR) STG(*BASED) LEN(128) BASPTR(&STR_P)
              
+             DCL        VAR(&PRE_SIZE)  TYPE(*INT)   VALUE(80)
+             DCL        VAR(&PRE_PTR)   TYPE(*PTR)   ADDRESS(*NULL)
+             DCL        VAR(&PRE_VAL)   TYPE(*CHAR) STG(*BASED) LEN(80) BASPTR(&PRE_PTR)
+             
+             CALLPRC    PRC('malloc') PARM((&PRE_SIZE *BYVAL)) RTNVAL(&PRE_PTR) 
+             SNDPGMMSG  MSG(&PRE_VAL)
+
              CHGVAR     VAR(&STARTER) VALUE(&STARTER *TCAT &NL)                                   
              CALLPRC    PRC('Qp2RunPase') PARM((&STARTER) (&NULL_P +   
                           *BYVAL) (&NULL_P *BYVAL) (0 *BYVAL) +        
