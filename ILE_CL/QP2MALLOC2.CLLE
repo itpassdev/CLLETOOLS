@@ -80,8 +80,7 @@ PGM
              CALLPRC    PRC('Qp2dlsym') PARM((&ID *BYVAL) (&SY_MEMSET) (&JCCSID  *BYVAL) (&SYMB_P)) RTNVAL(&RT_P)
              IF         COND(&RT_P *EQ *NULL) THEN(GOTO CMDLBL(FINE)) 
              CHGVAR     VAR(&MEMSET) VALUE(&RT)
-             GOTO       CMDLBL(SKIP)
-             CHGVAR     VAR(&SIZE_I32)                             VALUE(16)
+             CHGVAR     VAR(&SIZE_I32)                             VALUE(31)
              CHGVAR     VAR(&FIRST)                                VALUE(-1)
              CHGVAR     VAR(&SECOND)                               VALUE(0)
              CHGVAR     VAR(&RESTYP)                               VALUE(-5)
@@ -96,9 +95,9 @@ PGM
              SNDPGMMSG MSG('Qp2CallPase2 failed for malloc(); RTCD = ' *CAT %CHAR(&RTCD))
              GOTO       CMDLBL(FINE)
              ENDDO
-             CHGVAR     VAR(&TARGET) VALUE(&VOID_P32)
+             CHGVAR     VAR(&TARGET) VALUE(&VOID_P32 - %REM(&VOID_P32:16))
 
-SKIP:        CHGVAR     VAR(&SIZE_I32)                             VALUE(75)
+             CHGVAR     VAR(&SIZE_I32)                             VALUE(75)
              CHGVAR     VAR(&FIRST)                                VALUE(-1)
              CHGVAR     VAR(&SECOND)                               VALUE(0)
              CHGVAR     VAR(&RESTYP)                               VALUE(-5)
@@ -155,8 +154,6 @@ SKIP:        CHGVAR     VAR(&SIZE_I32)                             VALUE(75)
              GOTO CMDLBL(FINE)
              ENDDO
              
-             CALLPRC    PRC('Qp2malloc') PARM((&SIZE *BYVAL) (&TARG64) (*)) RTNVAL(&ILE_PTR)
-             
              CHGVAR     VAR(&TARG_P32)  VALUE(&TARGET)
              CHGVAR     VAR(&MEMO_P32)  VALUE(&MEMORY)
              CHGVAR     VAR(&FIRST)                                VALUE(-5)
@@ -174,7 +171,7 @@ SKIP:        CHGVAR     VAR(&SIZE_I32)                             VALUE(75)
              SNDPGMMSG MSG('Qp2CallPase2 failed for _SETSPP(); RTCD = ' *CAT %CHAR(&RTCD))
              GOTO CMDLBL(FINE)
              ENDDO
-             CHGVAR     VAR(&STR_PIN) VALUE(&PTR_VAL)
-             SNDPGMMSG  MSG(&STRING)
+/*             CHGVAR     VAR(&STR_PIN) VALUE(&PTR_VAL)  */
+/*             SNDPGMMSG  MSG(&STRING)                   */
              CALLPRC    PRC('Qp2EndPase') RTNVAL(&RTCD)
  FINE:       ENDPGM   
