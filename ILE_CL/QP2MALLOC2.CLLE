@@ -198,7 +198,7 @@ PGM
              CHGVAR     VAR(&THIRD)                                VALUE(-1)
              CHGVAR     VAR(&FORTH)                                VALUE(0)
              CHGVAR     VAR(&RESTYP)                               VALUE(0)
-             CHGVAR     VAR(&BF_LEN)                               VALUE(0)
+             CHGVAR     VAR(&BF_LEN)                               VALUE(16)
              CALLPRC    PRC('Qp2CallPase2') PARM((&MEMCPY) +
                                                  (&ARGL_P *BYVAL) +
                                                  (&SIGN_P *BYVAL) +
