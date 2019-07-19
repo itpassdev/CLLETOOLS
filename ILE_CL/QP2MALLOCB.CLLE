@@ -1,0 +1,205 @@
+PGM        
+             /* Qp2StartPase */
+             DCL        VAR(&STARTER) TYPE(*CHAR) LEN(17) VALUE('/usr/lib/start32')
+             DCL        VAR(&NL) TYPE(*CHAR) LEN(1) VALUE(X'00')       
+             DCL        VAR(&CCSID) TYPE(*INT) VALUE(1208)              
+             DCL        VAR(&ARGV_P) TYPE(*PTR) ADDRESS(&STARTER)      
+             DCL        VAR(&NULL_P) TYPE(*PTR) ADDRESS(*NULL)         
+             DCL        VAR(&RTCD) TYPE(*INT)                          
+             /* Qp2dlopen */
+             DCL        VAR(&PATH) TYPE(*CHAR) LEN(80) VALUE('/usr/lib/libc.a(shr.o)')                
+             DCL        VAR(&FLAGS) TYPE(*UINT) VALUE(262146)          
+             DCL        VAR(&JCCSID) TYPE(*INT) VALUE(0)                
+             DCL        VAR(&ID) TYPE(*INT) LEN(8) VALUE(0)   
+             /* Qp2dlsym */
+             DCL        VAR(&SY_MALLOC) TYPE(*CHAR) LEN(7)  VALUE('malloc')
+             DCL        VAR(&SY_SETSPP) TYPE(*CHAR) LEN(8)  VALUE('_SETSPP')
+             DCL        VAR(&SY_MEMCPY) TYPE(*CHAR) LEN(12) VALUE('_MEMCPY_WT2')
+             DCL        VAR(&SYMB_P)    TYPE(*PTR)         ADDRESS(*NULL)
+             DCL        VAR(&MALLOC)    TYPE(*INT)  LEN(8)
+             DCL        VAR(&SETSPP)    TYPE(*INT)  LEN(8)
+             DCL        VAR(&MEMCPY)    TYPE(*INT)  LEN(8)
+             DCL        VAR(&RT_P)      TYPE(*PTR)   ADDRESS(*NULL)
+             DCL        VAR(&RT)        TYPE(*INT) STG(*BASED) LEN(8) BASPTR(&RT_P)
+             /* Qp2malloc */
+             DCL        VAR(&SIZE)      TYPE(*UINT) LEN(8)   VALUE(16)
+             DCL        VAR(&TARG64)    TYPE(*UINT) LEN(8)
+             DCL        VAR(&TARGET)    TYPE(*UINT) STG(*DEFINED) LEN(4) DEFVAR(&TARG64 5)
+             DCL        VAR(&ILE_PTR)   TYPE(*PTR)         ADDRESS(*NULL)
+             DCL        VAR(&PTR_VAL)   TYPE(*CHAR) STG(*BASED) LEN(16) BASPTR(&ILE_PTR)
+             
+             /* Qp2CallPase2 */
+             DCL        VAR(&ARGL)      TYPE(*PTR)                                       ADDRESS(*NULL)
+             DCL        VAR(&ARGL_P)    TYPE(*PTR)                                       ADDRESS(&ARGL)
+             DCL        VAR(&SIGN)      TYPE(*PTR)                                       ADDRESS(*NULL)
+             DCL        VAR(&FIRST)     TYPE(*INT)  STG(*DEFINED) LEN(2) DEFVAR(&SIGN 1) 
+             DCL        VAR(&SECOND)    TYPE(*INT)  STG(*DEFINED) LEN(2) DEFVAR(&SIGN 3) 
+             DCL        VAR(&THIRD)     TYPE(*INT)  STG(*DEFINED) LEN(2) DEFVAR(&SIGN 5) 
+             DCL        VAR(&FORTH)     TYPE(*INT)  STG(*DEFINED) LEN(2) DEFVAR(&SIGN 7) 
+             DCL        VAR(&SIGN_P)    TYPE(*PTR)                                       ADDRESS(&SIGN)
+             DCL        VAR(&RESTYP)    TYPE(*INT)                LEN(2)                 VALUE(0)
+             DCL        VAR(&BUFFER)    TYPE(*CHAR)               LEN(32)               
+             DCL        VAR(&BUFF_P)    TYPE(*PTR)                                       ADDRESS(&BUFFER)
+             DCL        VAR(&BF_LEN)    TYPE(*INT)                LEN(2)                 VALUE(0)
+             /* malloc() */
+             DCL        VAR(&SIZE_I32)  TYPE(*UINT)  STG(*DEFINED) LEN(4) DEFVAR(&ARGL 1)
+             DCL        VAR(&VOID_P32)  TYPE(*UINT)  STG(*DEFINED) LEN(4) DEFVAR(&BUFFER 1)
+             DCL        VAR(&MEMORY)    TYPE(*UINT)                LEN(4) 
+             /* _SETSPP() */
+             DCL        VAR(&TARG_P32)  TYPE(*UINT)  STG(*DEFINED) LEN(4) DEFVAR(&ARGL 1)
+             DCL        VAR(&MEMO_P32)  TYPE(*UINT)  STG(*DEFINED) LEN(4) DEFVAR(&ARGL 5)
+             /* _MEMCPY_WT2() */
+             DCL        VAR(&TGT_SPPP)  TYPE(*UINT)  STG(*DEFINED) LEN(4) DEFVAR(&ARGL 1)
+             DCL        VAR(&SRC_SPPP)  TYPE(*UINT)  STG(*DEFINED) LEN(4) DEFVAR(&ARGL 5)
+             DCL        VAR(&CPLN_I32)  TYPE(*UINT)  STG(*DEFINED) LEN(4) DEFVAR(&ARGL 9)
+             DCL        VAR(&PASSEDSP)  TYPE(*CHAR)  STG(*DEFINED) LEN(16) DEFVAR(&BUFFER 17)
+             /* */
+             DCL        VAR(&STR_P)     TYPE(*PTR)   ADDRESS(*NULL)
+             DCL        VAR(&STR_PIN)   TYPE(*CHAR)  STG(*DEFINED) LEN(16) DEFVAR(&STR_P 1)
+             DCL        VAR(&STRING)    TYPE(*CHAR) STG(*BASED) LEN(75) BASPTR(&STR_P)
+             DCL        VAR(&STRING2)   TYPE(*CHAR) LEN(20) 
+             DCL        VAR(&STR2_P)    TYPE(*PTR)   ADDRESS(&STRING2)
+             DCL        VAR(&STR2_PX)   TYPE(*CHAR)  STG(*DEFINED) LEN(16) DEFVAR(&STR2_P 1)
+             
+             CHGVAR     VAR(&STARTER) VALUE(&STARTER *TCAT &NL)                                   
+             CALLPRC    PRC('Qp2RunPase') PARM((&STARTER) (&NULL_P +   
+                          *BYVAL) (&NULL_P *BYVAL) (0 *BYVAL) +        
+                          (&CCSID *BYVAL) (&ARGV_P) (&NULL_P +         
+                          *BYVAL)) RTNVAL(&RTCD)                       
+             IF         COND(&RTCD *NE -2) THEN(GOTO CMDLBL(FINE))       
+             CHGVAR     VAR(&PATH) VALUE(&PATH *TCAT &NL)              
+             CALLPRC    PRC('Qp2dlopen') PARM((&PATH) (&FLAGS +        
+                          *BYVAL) (&JCCSID *BYVAL)) RTNVAL(&ID) 
+             IF         COND(&ID *EQ 0) THEN(GOTO CMDLBL(FINE))   
+             CHGVAR     VAR(&SY_MALLOC) VALUE(&SY_MALLOC *TCAT &NL)              
+             CALLPRC    PRC('Qp2dlsym') PARM((&ID *BYVAL) (&SY_MALLOC) (&JCCSID  *BYVAL) (&SYMB_P)) RTNVAL(&RT_P)
+             IF         COND(&RT_P *EQ *NULL) THEN(GOTO CMDLBL(FINE)) 
+             CHGVAR     VAR(&MALLOC) VALUE(&RT)
+             CHGVAR     VAR(&SY_SETSPP) VALUE(&SY_SETSPP *TCAT &NL)              
+             CALLPRC    PRC('Qp2dlsym') PARM((&ID *BYVAL) (&SY_SETSPP) (&JCCSID  *BYVAL) (&SYMB_P)) RTNVAL(&RT_P)
+             IF         COND(&RT_P *EQ *NULL) THEN(GOTO CMDLBL(FINE)) 
+             CHGVAR     VAR(&SETSPP) VALUE(&RT)
+             CHGVAR     VAR(&SY_MEMCPY) VALUE(&SY_MEMCPY *TCAT &NL)              
+             CALLPRC    PRC('Qp2dlsym') PARM((&ID *BYVAL) (&SY_MEMCPY) (&JCCSID  *BYVAL) (&SYMB_P)) RTNVAL(&RT_P)
+             IF         COND(&RT_P *EQ *NULL) THEN(GOTO CMDLBL(FINE)) 
+             CHGVAR     VAR(&MEMCPY) VALUE(&RT)
+             CHGVAR     VAR(&SIZE_I32)                             VALUE(31)
+             CHGVAR     VAR(&FIRST)                                VALUE(-1)
+             CHGVAR     VAR(&SECOND)                               VALUE(0)
+             CHGVAR     VAR(&RESTYP)                               VALUE(-5)
+             CHGVAR     VAR(&BF_LEN)                               VALUE(4)
+             CALLPRC    PRC('Qp2CallPase2') PARM((&MALLOC) +
+                                                 (&ARGL_P *BYVAL) +
+                                                 (&SIGN_P *BYVAL) +
+                                                 (&RESTYP *BYVAL) +
+                                                 (&BUFF_P *BYVAL) +
+                                                 (&BF_LEN *BYVAL)) RTNVAL(&RTCD)
+             IF         COND(&RTCD *NE 0) THEN(DO)
+             SNDPGMMSG MSG('Qp2CallPase2 failed for malloc(); RTCD = ' *CAT %CHAR(&RTCD))
+             GOTO       CMDLBL(FINE)
+             ENDDO
+             CHGVAR     VAR(&TARGET) VALUE(&VOID_P32 + 15)  
+             CHGVAR     VAR(&TARGET) VALUE(&TARGET / 16) 
+             CHGVAR     VAR(&TARGET) VALUE(&TARGET * 16) 
+
+             CHGVAR     VAR(&SIZE_I32)                             VALUE(75)
+             CHGVAR     VAR(&FIRST)                                VALUE(-1)
+             CHGVAR     VAR(&SECOND)                               VALUE(0)
+             CHGVAR     VAR(&RESTYP)                               VALUE(-5)
+             CHGVAR     VAR(&BF_LEN)                               VALUE(4)
+             CALLPRC    PRC('Qp2CallPase2') PARM((&MALLOC) +
+                                                 (&ARGL_P *BYVAL) +
+                                                 (&SIGN_P *BYVAL) +
+                                                 (&RESTYP *BYVAL) +
+                                                 (&BUFF_P *BYVAL) +
+                                                 (&BF_LEN *BYVAL)) RTNVAL(&RTCD)
+             IF         COND(&RTCD *NE 0) THEN(DO)
+             SNDPGMMSG MSG('Qp2CallPase2 failed for malloc(); RTCD = ' *CAT %CHAR(&RTCD))
+             GOTO CMDLBL(FINE)
+             ENDDO
+             CHGVAR     VAR(&MEMORY) VALUE(&VOID_P32)
+             
+             CHGVAR     VAR(&STRI_P32)                             VALUE(&MEMORY)
+             CHGVAR     VAR(&CHAR_I32)                             VALUE(241)
+             CHGVAR     VAR(&LENG_I32)                             VALUE(75)
+             CHGVAR     VAR(&FIRST)                                VALUE(-5)
+             CHGVAR     VAR(&SECOND)                               VALUE(-1)
+             CHGVAR     VAR(&THIRD)                                VALUE(-1)
+             CHGVAR     VAR(&FORTH)                                VALUE(0)
+             CHGVAR     VAR(&RESTYP)                               VALUE(-5)
+             CHGVAR     VAR(&BF_LEN)                               VALUE(4)
+             CALLPRC    PRC('Qp2CallPase2') PARM((&MEMSET) +
+                                                 (&ARGL_P *BYVAL) +
+                                                 (&SIGN_P *BYVAL) +
+                                                 (&RESTYP *BYVAL) +
+                                                 (&BUFF_P *BYVAL) +
+                                                 (&BF_LEN *BYVAL)) RTNVAL(&RTCD)
+             IF         COND(&RTCD *NE 0) THEN(DO)
+             SNDPGMMSG MSG('Qp2CallPase2 failed for memset(); RTCD = ' *CAT %CHAR(&RTCD))
+             GOTO CMDLBL(FINE)
+             ENDDO
+             
+             CHGVAR     VAR(&STRI_P32)                             VALUE(&MEMORY + 16)
+             CHGVAR     VAR(&CHAR_I32)                             VALUE(242)
+             CHGVAR     VAR(&LENG_I32)                             VALUE(24)
+             CHGVAR     VAR(&FIRST)                                VALUE(-5)
+             CHGVAR     VAR(&SECOND)                               VALUE(-1)
+             CHGVAR     VAR(&THIRD)                                VALUE(-1)
+             CHGVAR     VAR(&FORTH)                                VALUE(0)
+             CHGVAR     VAR(&RESTYP)                               VALUE(-5)
+             CHGVAR     VAR(&BF_LEN)                               VALUE(4)
+             CALLPRC    PRC('Qp2CallPase2') PARM((&MEMSET) +
+                                                 (&ARGL_P *BYVAL) +
+                                                 (&SIGN_P *BYVAL) +
+                                                 (&RESTYP *BYVAL) +
+                                                 (&BUFF_P *BYVAL) +
+                                                 (&BF_LEN *BYVAL)) RTNVAL(&RTCD)
+             IF         COND(&RTCD *NE 0) THEN(DO)
+             SNDPGMMSG MSG('Qp2CallPase2 failed for memset(); RTCD = ' *CAT %CHAR(&RTCD))
+             GOTO CMDLBL(FINE)
+             ENDDO
+             
+             CHGVAR     VAR(&TARG_P32)  VALUE(&TARGET)
+             CHGVAR     VAR(&MEMO_P32)  VALUE(&MEMORY)
+             CHGVAR     VAR(&FIRST)                                VALUE(-5)
+             CHGVAR     VAR(&SECOND)                               VALUE(-5)
+             CHGVAR     VAR(&THIRD)                                VALUE(0)
+             CHGVAR     VAR(&RESTYP)                               VALUE(0)
+             CHGVAR     VAR(&BF_LEN)                               VALUE(0)
+             CALLPRC    PRC('Qp2CallPase2') PARM((&SETSPP) +
+                                                 (&ARGL_P *BYVAL) +
+                                                 (&SIGN_P *BYVAL) +
+                                                 (&RESTYP *BYVAL) +
+                                                 (&BUFF_P *BYVAL) +
+                                                 (&BF_LEN *BYVAL)) RTNVAL(&RTCD)
+             IF         COND(&RTCD *NE 0) THEN(DO)
+             SNDPGMMSG MSG('Qp2CallPase2 failed for _SETSPP(); RTCD = ' *CAT %CHAR(&RTCD))
+             GOTO CMDLBL(FINE)
+             ENDDO
+             
+             CHGVAR     VAR(&PASSEDSP)  VALUE(&STR2_PX)
+             /*                              X'0FFF0010'  */
+             CHGVAR     VAR(&TGT_SPPP)  VALUE(268369936)
+             CHGVAR     VAR(&SRC_SPPP)  VALUE(&TARGET)
+             CHGVAR     VAR(&CPLN_I32)  VALUE(20)
+             CHGVAR     VAR(&FIRST)                                VALUE(-5)
+             CHGVAR     VAR(&SECOND)                               VALUE(-5)
+             CHGVAR     VAR(&THIRD)                                VALUE(-1)
+             CHGVAR     VAR(&FORTH)                                VALUE(0)
+             CHGVAR     VAR(&RESTYP)                               VALUE(0)
+             CHGVAR     VAR(&BF_LEN)                               VALUE(32)
+             CALLPRC    PRC('Qp2CallPase2') PARM((&MEMCPY) +
+                                                 (&ARGL_P *BYVAL) +
+                                                 (&SIGN_P *BYVAL) +
+                                                 (&RESTYP *BYVAL) +
+                                                 (&BUFF_P *BYVAL) +
+                                                 (&BF_LEN *BYVAL)) RTNVAL(&RTCD)
+             IF         COND(&RTCD *NE 0) THEN(DO)
+             SNDPGMMSG MSG('Qp2CallPase2 failed for _MEMCPY_WT2(); RTCD = ' *CAT %CHAR(&RTCD))
+             GOTO CMDLBL(FINE)
+             ENDDO
+
+             SNDPGMMSG  MSG(&STRING2)                   
+             SNDPGMMSG  MSG('Completed!')                   
+             CALLPRC    PRC('Qp2EndPase') RTNVAL(&RTCD)
+ FINE:       ENDPGM   
