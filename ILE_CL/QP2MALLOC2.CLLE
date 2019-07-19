@@ -40,7 +40,6 @@ PGM
              DCL        VAR(&FORTH)     TYPE(*INT)  STG(*DEFINED) LEN(2) DEFVAR(&SIGN 7) 
              DCL        VAR(&SIGN_P)    TYPE(*PTR)                                       ADDRESS(&SIGN)
              DCL        VAR(&RESTYP)    TYPE(*INT)                LEN(2)                 VALUE(0)
-         /*  DCL        VAR(&BUFFER)    TYPE(*PTR)                                       ADDRESS(*NULL) */
              DCL        VAR(&BUFFER)    TYPE(*CHAR)               LEN(32)               
              DCL        VAR(&BUFF_P)    TYPE(*PTR)                                       ADDRESS(&BUFFER)
              DCL        VAR(&BF_LEN)    TYPE(*INT)                LEN(2)                 VALUE(0)
@@ -60,7 +59,6 @@ PGM
              DCL        VAR(&TGT_SPPP)  TYPE(*UINT)  STG(*DEFINED) LEN(4) DEFVAR(&ARGL 1)
              DCL        VAR(&SRC_SPPP)  TYPE(*UINT)  STG(*DEFINED) LEN(4) DEFVAR(&ARGL 5)
              DCL        VAR(&CPLN_I32)  TYPE(*UINT)  STG(*DEFINED) LEN(4) DEFVAR(&ARGL 9)
-         /*  DCL        VAR(&PASSEDSP)  TYPE(*CHAR)  STG(*DEFINED) LEN(16) DEFVAR(&BUFFER 1) */
              DCL        VAR(&PASSEDSP)  TYPE(*CHAR)  STG(*DEFINED) LEN(16) DEFVAR(&BUFFER 17)
              /* */
              DCL        VAR(&STR_P)     TYPE(*PTR)   ADDRESS(*NULL)
@@ -191,8 +189,7 @@ PGM
              ENDDO
              
              CHGVAR     VAR(&PASSEDSP)  VALUE(&STR2_PX)
-             /*                              X'0FFF0000'  */
-        /*   CHGVAR     VAR(&TGT_SPPP)  VALUE(268369920)  */
+             /*                              X'0FFF0010'  */
              CHGVAR     VAR(&TGT_SPPP)  VALUE(268369936)
              CHGVAR     VAR(&SRC_SPPP)  VALUE(&TARGET)
              CHGVAR     VAR(&CPLN_I32)  VALUE(20)
