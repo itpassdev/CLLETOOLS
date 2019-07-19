@@ -55,6 +55,10 @@ PGM
              DCL        VAR(&CHAR_I32)  TYPE(*UINT)  STG(*DEFINED) LEN(4) DEFVAR(&ARGL 5)
              DCL        VAR(&LENG_I32)  TYPE(*UINT)  STG(*DEFINED) LEN(4) DEFVAR(&ARGL 9)
              DCL        VAR(&VOID_P32)  TYPE(*UINT)  STG(*DEFINED) LEN(4) DEFVAR(&BUFFER 1)
+             /* _MEMCPY_WT2() */
+             DCL        VAR(&TGT_SPPP)  TYPE(*UINT)  STG(*DEFINED) LEN(4) DEFVAR(&ARGL 1)
+             DCL        VAR(&SRC_SPPP)  TYPE(*UINT)  STG(*DEFINED) LEN(4) DEFVAR(&ARGL 5)
+             DCL        VAR(&CPLN_I32)  TYPE(*UINT)  STG(*DEFINED) LEN(4) DEFVAR(&ARGL 9)
              /* */
              DCL        VAR(&STR_P)     TYPE(*PTR)   ADDRESS(*NULL)
              DCL        VAR(&STR_PIN)   TYPE(*CHAR)  STG(*DEFINED) LEN(16) DEFVAR(&STR_P 1)
@@ -177,6 +181,31 @@ PGM
                                                  (&BF_LEN *BYVAL)) RTNVAL(&RTCD)
              IF         COND(&RTCD *NE 0) THEN(DO)
              SNDPGMMSG MSG('Qp2CallPase2 failed for _SETSPP(); RTCD = ' *CAT %CHAR(&RTCD))
+             GOTO CMDLBL(FINE)
+             ENDDO
+             
+             DCL        VAR(&TGT_SPPP)  TYPE(*UINT)  STG(*DEFINED) LEN(4) DEFVAR(&ARGL 1)
+             DCL        VAR(&SRC_SPPP)  TYPE(*UINT)  STG(*DEFINED) LEN(4) DEFVAR(&ARGL 5)
+             DCL        VAR(&CPLN_I32)  TYPE(*UINT)  STG(*DEFINED) LEN(4) DEFVAR(&ARGL 9)
+             
+
+             CHGVAR     VAR(&TGT_SPPP)  VALUE(&TARGET)
+             CHGVAR     VAR(&SRC_SPPP)  VALUE(&TARGET)
+             CHGVAR     VAR(&CPLN_I32)  VALUE(20)
+             CHGVAR     VAR(&FIRST)                                VALUE(-5)
+             CHGVAR     VAR(&SECOND)                               VALUE(-5)
+             CHGVAR     VAR(&THIRD)                                VALUE(-1)
+             CHGVAR     VAR(&FORTH)                                VALUE(0)
+             CHGVAR     VAR(&RESTYP)                               VALUE(0)
+             CHGVAR     VAR(&BF_LEN)                               VALUE(0)
+             CALLPRC    PRC('Qp2CallPase2') PARM((&MEMCPY) +
+                                                 (&ARGL_P *BYVAL) +
+                                                 (&SIGN_P *BYVAL) +
+                                                 (&RESTYP *BYVAL) +
+                                                 (&BUFF_P *BYVAL) +
+                                                 (&BF_LEN *BYVAL)) RTNVAL(&RTCD)
+             IF         COND(&RTCD *NE 0) THEN(DO)
+             SNDPGMMSG MSG('Qp2CallPase2 failed for _MEMCPY_WT2(); RTCD = ' *CAT %CHAR(&RTCD))
              GOTO CMDLBL(FINE)
              ENDDO
 
