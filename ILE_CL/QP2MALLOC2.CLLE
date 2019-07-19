@@ -95,7 +95,7 @@ PGM
              SNDPGMMSG MSG('Qp2CallPase2 failed for malloc(); RTCD = ' *CAT %CHAR(&RTCD))
              GOTO       CMDLBL(FINE)
              ENDDO
-             CHGVAR     VAR(&TARGET) VALUE(&TARGET + 15)  
+             CHGVAR     VAR(&TARGET) VALUE(&VOID_P32 + 15)  
              CHGVAR     VAR(&TARGET) VALUE(&TARGET / 16) 
              CHGVAR     VAR(&TARGET) VALUE(&TARGET * 16) 
 
