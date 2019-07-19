@@ -189,7 +189,8 @@ PGM
              ENDDO
              
              CHGVAR     VAR(&PASSEDSP)  VALUE(&STR2_PX)
-             CHGVAR     VAR(&TGT_SPPP)  VALUE(X'0FFF0000')
+             /*                               X'0FFF0000'  */
+             CHGVAR     VAR(&TGT_SPPP)  VALUE(268369920)
              CHGVAR     VAR(&SRC_SPPP)  VALUE(&TARGET)
              CHGVAR     VAR(&CPLN_I32)  VALUE(20)
              CHGVAR     VAR(&FIRST)                                VALUE(-5)
