@@ -184,11 +184,6 @@ PGM
              GOTO CMDLBL(FINE)
              ENDDO
              
-             DCL        VAR(&TGT_SPPP)  TYPE(*UINT)  STG(*DEFINED) LEN(4) DEFVAR(&ARGL 1)
-             DCL        VAR(&SRC_SPPP)  TYPE(*UINT)  STG(*DEFINED) LEN(4) DEFVAR(&ARGL 5)
-             DCL        VAR(&CPLN_I32)  TYPE(*UINT)  STG(*DEFINED) LEN(4) DEFVAR(&ARGL 9)
-             
-
              CHGVAR     VAR(&TGT_SPPP)  VALUE(&TARGET)
              CHGVAR     VAR(&SRC_SPPP)  VALUE(&TARGET)
              CHGVAR     VAR(&CPLN_I32)  VALUE(20)
