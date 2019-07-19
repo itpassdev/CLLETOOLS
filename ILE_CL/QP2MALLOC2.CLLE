@@ -83,7 +83,7 @@ PGM
              IF         COND(&RT_P *EQ *NULL) THEN(GOTO CMDLBL(FINE)) 
              CHGVAR     VAR(&MEMSET) VALUE(&RT)
              CHGVAR     VAR(&SY_MEMCPY) VALUE(&SY_MEMCPY *TCAT &NL)              
-             CCALLPRC    PRC('Qp2dlsym') PARM((&ID *BYVAL) (&SY_MEMCPY) (&JCCSID  *BYVAL) (&SYMB_P)) RTNVAL(&RT_P)
+             CALLPRC    PRC('Qp2dlsym') PARM((&ID *BYVAL) (&SY_MEMCPY) (&JCCSID  *BYVAL) (&SYMB_P)) RTNVAL(&RT_P)
              IF         COND(&RT_P *EQ *NULL) THEN(GOTO CMDLBL(FINE)) 
              CHGVAR     VAR(&MEMCPY) VALUE(&RT)
              CHGVAR     VAR(&SIZE_I32)                             VALUE(31)
