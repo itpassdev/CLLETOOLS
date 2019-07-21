@@ -2,5 +2,8 @@
              DCL        VAR(&SIZE)      TYPE(*UINT)  LEN(4) VALUE(75)
              DCL        VAR(&MEM_PASE)  TYPE(*UINT)  LEN(4)
              DCL        VAR(&POINTER)   TYPE(*PTR)   ADDRESS(*NULL)
-             CALLPRC    PRC('QP2MALLOC2') PARM((&SIZE) (&MEM_PASE) (&POINTER))
+             DCL        VAR(&SPP)       TYPE(*PTR)   ADDRESS(&POINTER)
+             SNDPGMMSG  MSG(%CHAR(&POINTER))
+             CALLPRC    PRC('QP2MALLOC2') PARM((&SIZE) (&MEM_PASE) (&SPP))
+             SNDPGMMSG  MSG(%CHAR(&POINTER))
              ENDPGM
