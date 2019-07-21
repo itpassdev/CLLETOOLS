@@ -1,11 +1,13 @@
              PGM          
              DCL        VAR(&SIZE)      TYPE(*UINT)  LEN(4) VALUE(75)
-             DCL        VAR(&MEM_PASE)  TYPE(*UINT)  LEN(4)
+             DCL        VAR(&MEM_PASE)  TYPE(*UINT)  LEN(4) VALUE(0)
              DCL        VAR(&POINTER)   TYPE(*PTR)   ADDRESS(*NULL)
              DCL        VAR(&HALF1)     TYPE(*UINT)  STG(*DEFINED) LEN(8) DEFVAR(&POINTER 1)
              DCL        VAR(&HALF2)     TYPE(*UINT)  STG(*DEFINED) LEN(8) DEFVAR(&POINTER 9)
              DCL        VAR(&SPP)       TYPE(*PTR)   ADDRESS(&POINTER)
+             SNDPGMMSG  MSG(%CHAR(MEM_PASE))
              SNDPGMMSG  MSG(%CHAR(&HALF1) *CAT ' - ' *CAT %CHAR(&HALF2))
              CALLPRC    PRC('QP2MALLOC2') PARM((&SIZE) (&MEM_PASE) (&SPP))
              SNDPGMMSG  MSG(%CHAR(&HALF1) *CAT ' - ' *CAT %CHAR(&HALF2))
+             SNDPGMMSG  MSG(%CHAR(MEM_PASE))
              ENDPGM
