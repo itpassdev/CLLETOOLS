@@ -4,5 +4,6 @@ ILE_CL    GETPASENV CLLE      Verifica stato PASE
 ILE_CL    TSTDLOPEN CLLE      Loading a PASE shared library
 ILE_CL    QP2MALLOC2CLLE      Loading a PASE 32-bits shared library
 ILE_CL    QP2MALLOC6CLLE      Loading a PASE 64-bits shared library
+ILE_CL    TESTMALLOCCLLE      Testing service program
 QSRVSRC   QP2USERBISBND       Defining a SRVPGM...
 QCLSRC    BUILD     CLP       Installazione
