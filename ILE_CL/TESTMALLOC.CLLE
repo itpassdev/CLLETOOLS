@@ -34,4 +34,5 @@
              CALLPRC    PRC('QP2MALLOC2') PARM((&ID) (&SIZE) (&MEM_PASE) (&SPP))
              SNDPGMMSG  MSG(%CHAR(&HALF1) *CAT ' - ' *CAT %CHAR(&HALF2))
              SNDPGMMSG  MSG(%CHAR(&MEM_PASE))
+FINE:        CALLPRC    PRC('Qp2EndPase') RTNVAL(&RTCD)             
              ENDPGM
