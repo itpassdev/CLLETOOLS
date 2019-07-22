@@ -1,3 +1,4 @@
 StrPgmExp PgmLvl(*CURRENT) Signature('ExampleV01R01M01')
 Export Symbol("QP2MALLOC2")
+Export Symbol("QP2MALLOC4")
 EndPgmExp
