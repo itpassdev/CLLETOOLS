@@ -42,16 +42,6 @@ PGM          PARM(&ID &SIZE &MEM_PASE &SPP)
              DCL        VAR(&TARGET1)   TYPE(*UINT)  LEN(4)
              DCL        VAR(&TARGET2)   TYPE(*UINT)  LEN(4)
              
-             CHGVAR     VAR(&STARTER) VALUE(&STARTER *TCAT &NL)                                   
-             CALLPRC    PRC('Qp2RunPase') PARM((&STARTER) (&NULL_P +   
-                          *BYVAL) (&NULL_P *BYVAL) (0 *BYVAL) +        
-                          (&CCSID *BYVAL) (&ARGV_P) (&NULL_P +         
-                          *BYVAL)) RTNVAL(&RTCD)                       
-             IF         COND(&RTCD *NE -2) THEN(GOTO CMDLBL(FINE))       
-             CHGVAR     VAR(&PATH) VALUE(&PATH *TCAT &NL)              
-             CALLPRC    PRC('Qp2dlopen') PARM((&PATH) (&FLAGS +        
-                          *BYVAL) (&JCCSID *BYVAL)) RTNVAL(&ID) 
-             IF         COND(&ID *EQ 0) THEN(GOTO CMDLBL(FINE))   
              CHGVAR     VAR(&SY_MALLOC) VALUE(&SY_MALLOC *TCAT &NL)              
              CALLPRC    PRC('Qp2dlsym') PARM((&ID *BYVAL) (&SY_MALLOC) (&JCCSID  *BYVAL) (&SYMB_P)) RTNVAL(&RT_P)
              IF         COND(&RT_P *EQ *NULL) THEN(GOTO CMDLBL(FINE)) 
