@@ -37,7 +37,7 @@
              SNDPGMMSG  MSG(%CHAR(&HALF1) *CAT ' - ' *CAT %CHAR(&HALF2))
              SNDPGMMSG  MSG(%CHAR(&MEMPASE32))
 FINE32:      CALLPRC    PRC('Qp2EndPase') RTNVAL(&RTCD)             
-
+             CHGVAR     VAR(&POINTER) VALUE(*NULL)
              CHGVAR     VAR(&STARTER) VALUE('/usr/lib/start64' *CAT &NL)                                   
              CALLPRC    PRC('Qp2RunPase') PARM((&STARTER) (&NULL_P +   
                           *BYVAL) (&NULL_P *BYVAL) (0 *BYVAL) +        
