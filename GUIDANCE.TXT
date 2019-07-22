@@ -2,7 +2,8 @@ ILE_CL    STRPASENV CLLE      Avvio ambiente PASE
 ILE_CL    ENDPASENV CLLE      Terminazione ambiente PASE
 ILE_CL    GETPASENV CLLE      Verifica stato PASE
 ILE_CL    TSTDLOPEN CLLE      Loading a PASE shared library
-ILE_CL    QP2MALLOC2CLLE      Loading a PASE 32-bits shared library
+ILE_CL    QP2MALLOC2CLLE      Resolving PASE 32-bits libc.a entry points
+ILE_CL    QP2MALLOC4CLLE      Resolving PASE 64-bits libc.a entry points
 ILE_CL    TESTMALLOCCLLE      Testing service program
 QSRVSRC   QP2USERBISBND       Defining a SRVPGM...
 QCLSRC    BUILD     CLP       Installazione
