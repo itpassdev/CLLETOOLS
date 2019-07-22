@@ -58,10 +58,8 @@ PGM          PARM(&ID &SIZE &MEM_PASE &SPP)
              IF         COND(&RT_P *EQ *NULL) THEN(GOTO CMDLBL(FINE)) 
              CHGVAR     VAR(&MEMCPY) VALUE(&RT)
              
-        /*   CHGVAR     VAR(&SIZE_I64)                             VALUE(31)  */
-        /*   CHGVAR     VAR(&FIRST)                                VALUE(-2)  */
-             CHGVAR     VAR(&SIZE_I32)                             VALUE(31)
-             CHGVAR     VAR(&FIRST)                                VALUE(-1)
+             CHGVAR     VAR(&SIZE_I64)                             VALUE(31)
+             CHGVAR     VAR(&FIRST)                                VALUE(-2)
              CHGVAR     VAR(&SECOND)                               VALUE(0)
              CHGVAR     VAR(&RESTYP)                               VALUE(-6)
              CHGVAR     VAR(&BF_LEN)                               VALUE(8)
