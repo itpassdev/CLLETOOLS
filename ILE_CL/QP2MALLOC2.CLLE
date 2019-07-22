@@ -6,6 +6,7 @@ PGM          PARM(&ID &SIZE &MEM_PASE &SPP)
              DCL        VAR(&RET_HERE)  TYPE(*CHAR)  STG(*DEFINED) LEN(16) DEFVAR(&SPP 1)
              DCL        VAR(&NL) TYPE(*CHAR) LEN(1) VALUE(X'00')       
              /* Qp2dlsym */
+             DCL        VAR(&RTCD)      TYPE(*INT)                          
              DCL        VAR(&JCCSID)    TYPE(*INT) VALUE(0)                
              DCL        VAR(&SY_MALLOC) TYPE(*CHAR) LEN(7)  VALUE('malloc')
              DCL        VAR(&SY_SETSPP) TYPE(*CHAR) LEN(8)  VALUE('_SETSPP')
