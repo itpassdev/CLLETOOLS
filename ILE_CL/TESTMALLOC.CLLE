@@ -23,16 +23,34 @@
                           *BYVAL) (&NULL_P *BYVAL) (0 *BYVAL) +        
                           (&CCSID *BYVAL) (&ARGV_P) (&NULL_P +         
                           *BYVAL)) RTNVAL(&RTCD)                       
-             IF         COND(&RTCD *NE -2) THEN(GOTO CMDLBL(FINE))       
+             IF         COND(&RTCD *NE -2) THEN(GOTO CMDLBL(FINE32))       
              CHGVAR     VAR(&PATH) VALUE(&PATH *TCAT &NL)              
              CALLPRC    PRC('Qp2dlopen') PARM((&PATH) (&FLAGS +        
                           *BYVAL) (&JCCSID *BYVAL)) RTNVAL(&ID) 
-             IF         COND(&ID *EQ 0) THEN(GOTO CMDLBL(FINE))   
+             IF         COND(&ID *EQ 0) THEN(GOTO CMDLBL(FINE32))   
   
              SNDPGMMSG  MSG(%CHAR(&MEM_PASE))
              SNDPGMMSG  MSG(%CHAR(&HALF1) *CAT ' - ' *CAT %CHAR(&HALF2))
              CALLPRC    PRC('QP2MALLOC2') PARM((&ID) (&SIZE) (&MEM_PASE) (&SPP))
              SNDPGMMSG  MSG(%CHAR(&HALF1) *CAT ' - ' *CAT %CHAR(&HALF2))
              SNDPGMMSG  MSG(%CHAR(&MEM_PASE))
-FINE:        CALLPRC    PRC('Qp2EndPase') RTNVAL(&RTCD)             
+FINE32:      CALLPRC    PRC('Qp2EndPase') RTNVAL(&RTCD)             
+
+             CHGVAR     VAR(&STARTER) VALUE('/usr/lib/start64' *CAT &NL)                                   
+             CALLPRC    PRC('Qp2RunPase') PARM((&STARTER) (&NULL_P +   
+                          *BYVAL) (&NULL_P *BYVAL) (0 *BYVAL) +        
+                          (&CCSID *BYVAL) (&ARGV_P) (&NULL_P +         
+                          *BYVAL)) RTNVAL(&RTCD)                       
+             IF         COND(&RTCD *NE -2) THEN(GOTO CMDLBL(FINE64))       
+             CHGVAR     VAR(&PATH) VALUE('/usr/lib/libc.a(shr_64.o)' *TCAT &NL)              
+             CALLPRC    PRC('Qp2dlopen') PARM((&PATH) (&FLAGS +        
+                          *BYVAL) (&JCCSID *BYVAL)) RTNVAL(&ID) 
+             IF         COND(&ID *EQ 0) THEN(GOTO CMDLBL(FINE64))   
+  
+             SNDPGMMSG  MSG(%CHAR(&MEM_PASE))
+             SNDPGMMSG  MSG(%CHAR(&HALF1) *CAT ' - ' *CAT %CHAR(&HALF2))
+             CALLPRC    PRC('QP2MALLOC2') PARM((&ID) (&SIZE) (&MEM_PASE) (&SPP))
+             SNDPGMMSG  MSG(%CHAR(&HALF1) *CAT ' - ' *CAT %CHAR(&HALF2))
+             SNDPGMMSG  MSG(%CHAR(&MEM_PASE))
+FINE64:      CALLPRC    PRC('Qp2EndPase') RTNVAL(&RTCD)             
              ENDPGM
