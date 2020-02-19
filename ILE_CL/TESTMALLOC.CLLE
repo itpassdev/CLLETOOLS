@@ -8,6 +8,10 @@
              DCL        VAR(&HALF2)     TYPE(*UINT)  STG(*DEFINED) LEN(8) DEFVAR(&POINTER 9)
              DCL        VAR(&SPP)       TYPE(*PTR)   ADDRESS(&POINTER)
              /* Qp2StartPase */
+             /* Seguono righe vuote */
+
+
+
              DCL        VAR(&STARTER) TYPE(*CHAR) LEN(17) VALUE('/usr/lib/start32')
              DCL        VAR(&NL) TYPE(*CHAR) LEN(1) VALUE(X'00')       
              DCL        VAR(&CCSID) TYPE(*INT) VALUE(1208)              
