@@ -56,3 +56,4 @@ FINE32:      CALLPRC    PRC('Qp2EndPase') RTNVAL(&RTCD)
              SNDPGMMSG  MSG(%CHAR(&MEMPASE64))
 FINE64:      CALLPRC    PRC('Qp2EndPase') RTNVAL(&RTCD)             
              ENDPGM
+contenuto senza line-feed
